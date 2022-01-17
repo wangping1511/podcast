@@ -1,5 +1,5 @@
 <template>
-	<div class="flex text-2xl py-4 mx-6 font-medium dark:text-white">
+	<div class="mt-8 mb-4 flex text-2xl mx-6 font-medium dark:text-white">
     <router-link to="/discover" class="mr-2" active-class="text-4xl">发现</router-link>
     <router-link to="/subscription" class="mr-2" active-class="text-4xl">订阅</router-link>
     <router-link to="/me" class="mr-2" active-class="text-4xl">我的</router-link>
