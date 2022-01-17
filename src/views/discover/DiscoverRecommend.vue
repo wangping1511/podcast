@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-6 mb-5">
+  <div class="mx-5 mb-5">
     <div class="flex justify-between">
       <p class="text-lg font-medium dark:text-white">今日推荐</p>
       <a class="text-primary text-xs self-end">往日推荐</a>
