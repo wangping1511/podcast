@@ -63,15 +63,15 @@ export const programmeData: ProgrammeProp[] = [
 	}
 ]
 
-const getRandomList = (size: number): ProgrammeProp[] => {
+export const getRandomList = (size: number): ProgrammeProp[] => {
 	let list = new Array<ProgrammeProp>()
-	for (let i = 0; i < programmeData.length; i++) {
+	for (let i = 0; i < size; i++) {
 		list.push(programmeData[Math.floor(Math.random() * programmeData.length)])
 	}
 	return list
 }
 
-const getOne = (id: number): ProgrammeProp | null => {
+export const getOne = (id: number): ProgrammeProp | null => {
 	const one = programmeData.find(item => item.id === id)
 	return one ? one : null
 }

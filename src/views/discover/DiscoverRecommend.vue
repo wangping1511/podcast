@@ -1,10 +1,10 @@
 <template>
-  <div class="mx-4 mb-6">
+  <div class="mx-6 mb-5">
     <div class="flex justify-between">
       <p class="text-lg font-medium dark:text-white">今日推荐</p>
       <a class="text-primary text-xs self-end">往日推荐</a>
     </div>
-    <div v-for="item in list" :key="item.id" class="flex my-4">
+    <div v-for="item in list" :key="item.id" class="flex mt-2 mb-3">
       <div class="flex-none">
         <img class="rounded h-20 w-20" :src="item.coverImg"  alt=""/>
       </div>
