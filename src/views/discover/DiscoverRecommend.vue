@@ -2,7 +2,7 @@
   <div class="mx-5 mb-5">
     <div class="flex justify-between">
       <p class="text-lg font-medium dark:text-white">今日推荐</p>
-      <a class="text-primary text-xs self-end">往日推荐</a>
+      <a class="text-primary text-sm self-end">往日推荐</a>
     </div>
     <div v-for="item in list" :key="item.id" class="flex mt-2 mb-3">
       <div class="flex-none">
