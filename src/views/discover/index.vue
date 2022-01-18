@@ -2,7 +2,7 @@
   <discover-featured :list="list"></discover-featured>
   <discover-recommend :list="list"></discover-recommend>
   <discover-popular-programme :list="programmeList"></discover-popular-programme>
-  <discover-popular-ep></discover-popular-ep>
+  <discover-popular-ep :list="list2"></discover-popular-ep>
 </template>
 
 <script setup lang="ts">
@@ -14,7 +14,9 @@ import DiscoverPopularProgramme from '@/views/discover/DiscoverPopularProgramme.
 import DiscoverPopularEp from '@/views/discover/DiscoverPopularEp.vue'
 
 const list = getRandomList(3)
-const programmeList = getProgrammeRandomList(3)
+const programmeList = getProgrammeRandomList(6)
+const list2 = getRandomList(9)
+
 </script>
 
 <style scoped>
