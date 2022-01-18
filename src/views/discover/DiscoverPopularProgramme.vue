@@ -1,7 +1,7 @@
 <template>
   <div class="mb-5">
     <div class="mx-5 flex justify-between">
-      <p class="text-lg font-medium dark:text-white">热门节目</p>
+      <p class="text-xl font-medium dark:text-white">热门节目</p>
       <a class="text-primary text-sm self-end">查看更多</a>
     </div>
     <div class="mt-3 flex overflow-x-scroll scrollbar-hide pl-5">
