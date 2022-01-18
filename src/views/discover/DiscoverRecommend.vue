@@ -16,7 +16,7 @@
           </p>
         </div>
         <div class="flex items-center">
-          <div class="h-5 w-5 rounded-full bg-basicWhite dark:bg-basicBlack flex justify-center items-center">
+          <div class="h-5.5 w-5.5 rounded-full bg-basicWhite dark:bg-basicBlack flex justify-center items-center">
             <i-bi-play-fill class="text-primary text-sm" />
           </div>
           <p class="ml-2 text-xs text-secondary">{{ item.duration }} 分钟</p>
