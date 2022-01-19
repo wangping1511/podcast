@@ -8,7 +8,9 @@
             <p class="text-xs font-medium text-primary">精选</p>
             <p class="pr-2 text-base">{{ item.title }}</p>
           </div>
-          <div class="mt-1 rounded bg-primary w-full h-42"></div>
+          <div class="mt-1 h-42 rounded overflow-hidden bg-primary">
+<!--            <img :src="item.coverImg" alt="..." class="object-fill w-full">-->
+          </div>
         </div>
       </div>
     </div>

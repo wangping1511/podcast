@@ -22,12 +22,24 @@ const routes: RouteRecordRaw[] = [
 				meta: { index: 2 }
 			}
 		]
+	},
+	{
+		path: '/programme-detail/:id',
+		name: 'ProgrammeDetail',
+		component: () => import('@/views/ProgrammeDetail.vue')
 	}
 ]
 
 const router = createRouter({
 	history: createWebHashHistory('/podcast/#/'),
-	routes
+	routes,
+	scrollBehavior: (to, from, savedPosition) => {
+		if (savedPosition) {
+			return savedPosition
+		} else {
+			return { top: 0 }
+		}
+	}
 })
 
 export default router
