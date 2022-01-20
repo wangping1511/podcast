@@ -7,6 +7,8 @@ import IconsResolver from 'unplugin-icons/resolver'
 import Components from 'unplugin-vue-components/vite'
 import WindiCSS from 'vite-plugin-windicss'
 import viteCompression from 'vite-plugin-compression'
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+import ViteImages from 'vite-plugin-vue-images'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -31,6 +33,10 @@ export default defineConfig({
       ]
     }),
     Icons({}),
+    ViteImages({
+      dirs: ['src/assets/images']
+    }),
+    vueSetupExtend(),
     viteCompression()
   ],
   resolve: {

@@ -71,7 +71,6 @@ export const getRandomList = (size: number): ProgrammeProp[] => {
 	return list
 }
 
-export const getOne = (id: number): ProgrammeProp | null => {
-	const one = programmeData.find(item => item.id === id)
-	return one ? one : null
+export const getOne = (id: number): ProgrammeProp | null | undefined => {
+	return programmeData.find(item => item.id === id)
 }

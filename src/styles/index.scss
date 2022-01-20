@@ -7,3 +7,18 @@
     display: none;
   }
 }
+
+// 移除移动端 a 标签默认样式
+a {
+  &:hover,
+  &:active,
+  &:visited,
+  &:link,
+  &:focus {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    background: none;
+    text-decoration: none;
+  }
+}

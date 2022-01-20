@@ -3,25 +3,21 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 const routes: RouteRecordRaw[] = [
 	{
 		path: '/',
-		component: () => import('@/views/index.vue'),
-		redirect: 'discover',
-		children: [
-			{
-				path: 'discover',
-				component: () => import('@/views/discover/index.vue'),
-				meta: { index: 0 }
-			},
-			{
-				path: 'subscription',
-				component: () => import('@/views/subscription/index.vue'),
-				meta: { index: 1 }
-			},
-			{
-				path: 'me',
-				component: () => import('@/views/me/index.vue'),
-				meta: { index: 2 }
-			}
-		]
+		component: () => import('@/views/discover/index.vue'),
+		name: 'Discover',
+		meta: { title: '发现' }
+	},
+	{
+		path: '/subscription',
+		component: () => import('@/views/subscription/index.vue'),
+		name: 'Subscription',
+		meta: { title: '订阅' }
+	},
+	{
+		path: '/me',
+		component: () => import('@/views/me/index.vue'),
+		name: 'Me',
+		meta: { title: '我的' }
 	},
 	{
 		path: '/programme-detail/:id',
@@ -34,6 +30,7 @@ const router = createRouter({
 	history: createWebHashHistory('/podcast/#/'),
 	routes,
 	scrollBehavior: (to, from, savedPosition) => {
+		console.log(to, from, savedPosition)
 		if (savedPosition) {
 			return savedPosition
 		} else {
