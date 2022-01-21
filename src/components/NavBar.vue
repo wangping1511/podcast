@@ -5,7 +5,7 @@
     <router-link to="/me" class="mr-2" active-class="text-4xl">我的</router-link>
 	</div>
   <transition name="fade">
-    <div v-if="y > 50" class="w-full py-2 text-center text-xl fixed inset-x-0 top-0 z-[1000] bg-white dark:bg-basicBlack shadow-sm">
+    <div v-if="y > 50" class="w-full py-2 text-center text-xl fixed inset-x-0 top-0 z-[1000] bg-white dark:bg-[#141414] shadow-sm">
       <p class="dark:text-white">{{ $route.meta.title }}</p>
     </div>
   </transition>

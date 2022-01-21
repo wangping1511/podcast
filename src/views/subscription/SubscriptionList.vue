@@ -3,9 +3,11 @@
     <p class="text-xl font-medium dark:text-white">订阅节目</p>
     <div class="grid grid-cols-2 gap-2 py-3">
       <div v-for="item in list" :key="item.id" class="mb-2">
-        <img class="rounded shadow-md"
-             :src="item.coverImg"
-             alt=""/>
+        <router-link :to="{ name: 'ProgrammeDetail',  params: { id: item.id }}">
+          <img class="rounded shadow-md"
+               :src="item.coverImg"
+               alt=""/>
+        </router-link>
         <p class="mt-1 text-sm dark:text-white">{{ item.name }}</p>
         <p class="text-xs text-secondary">更新于 9/12</p>
       </div>

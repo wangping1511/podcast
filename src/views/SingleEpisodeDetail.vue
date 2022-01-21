@@ -6,7 +6,7 @@
           <div class="bg-black bg-opacity-20 h-7 w-7 flex items-center rounded-full" @click="$router.back()">
             <i-uil-angle-left-b class="text-xl text-white"></i-uil-angle-left-b>
           </div>
-          <p v-if="y > 200" class="dark:text-white">{{ programme.name }}</p>
+          <p v-if="y > 200" class="dark:text-white">{{ ep.title }}</p>
           <div>
             <div class="bg-black bg-opacity-20 h-7 w-7 flex items-center justify-center rounded-full" :class="y > 200 ? 'text-primary': 'text-white'">
               <i-uil-plus v-if="false" class="text-xl"></i-uil-plus>
@@ -16,42 +16,23 @@
         </div>
       </div>
       <div class="flex flex-col items-center" :class="light === 1 ? 'text-white' : ''">
-        <img class="bg-primary h-45 w-45 rounded-md shadow-2xl" :src="programme.coverImg" crossorigin="anonymous">
-        <p class="text-sm font-medium mt-2">{{ programme.name }}</p>
-        <p class="text-xs text-secondary mt-2">{{ programme.author }}</p>
-        <button class="w-60 h-10 rounded-lg mt-2 text-sm font-medium" :class="light === 1 ? 'bg-white text-black' : 'bg-basicBlack text-white'">最新单集</button>
-        <p class="px-5 mt-3 text-xs">{{ programme.description }}</p>
-      </div>
-    </div>
-  </div>
-  <div class="px-5 pb-5 py-3 dark:text-white">
-    <p class="text-xl font-medium mb-2">单集</p>
-    <div v-for="item in epList" class="mb-4" @click="$router.push('/single-episode-detail/' + item.id)">
-      <p class="text-xs text-secondary">{{ item.createTime }}</p>
-      <p class="text-sm">{{ item.title }}</p>
-      <p class="text-xs text-secondary">{{ item.description }}</p>
-      <div class="flex items-center mt-2">
-        <div class="h-5.5 w-5.5 rounded-full bg-basicWhite dark:bg-basicBlack flex justify-center items-center">
-          <i-bi-play-fill class="text-primary text-sm" />
-        </div>
-        <p class="ml-2 text-xs text-primary">{{ item.duration }} 分钟</p>
+        <img class="bg-primary h-45 w-45 rounded-md shadow-2xl" :src="ep.coverImg" crossorigin="anonymous">
+        <p class="text-xs text-secondary mt-2">{{ ep.createTime }}</p>
+        <p class="text-sm font-medium mt-2">{{ ep.title }}</p>
+        <button class="w-60 h-10 rounded-lg mt-2 text-sm font-medium" :class="light === 1 ? 'bg-white text-black' : 'bg-basicBlack text-white'">播放</button>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts" name="ProgrammeDetail">
-import { ProgrammeProp, getOne } from '../../mock/ProgrammeData'
-import { SingleEpisodeProp, getListByProgrammeId } from '../../mock/SingleEpisodeData'
+<script setup lang="ts" name="SingleEpisodeDetail">
+import { SingleEpisodeProp, getOne } from '../../mock/SingleEpisodeData'
 import ColorThief from './../../node_modules/colorthief/dist/color-thief.mjs'
 
 const route = useRoute()
 
-const programme = <ProgrammeProp>getOne(Number(route.params.id))
+const ep = <SingleEpisodeProp>getOne(Number(route.params.id))
 
-const epList = <SingleEpisodeProp[]>getListByProgrammeId(Number(route.params.id))
-
-console.log('ProgrammeDetail.vue Create...')
 
 // 获取主要色调
 const bgColor = ref([])

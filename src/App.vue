@@ -2,7 +2,7 @@
   <div>
     <router-view v-slot="{ Component }">
       <nav-bar v-if="navBarVisibleFlag"></nav-bar>
-      <keep-alive :exclude="['ProgrammeDetail']">
+      <keep-alive :exclude="['ProgrammeDetail', 'SingleEpisodeDetail']">
         <component :is="Component" :key="$route.name" />
       </keep-alive>
     </router-view>
@@ -28,5 +28,26 @@ const navBarVisibleFlag = computed(() => {
     return hasNavBarRoute.indexOf(route.name.toString()) > -1;
   }
   return false
+})
+
+const cacheComponents = ref<string[]>([])
+/**
+ *
+ */
+const router = useRouter()
+
+let needCacheComponents = router.getRoutes()
+    .filter(item => item.meta.keepAliveFlag)
+    .map(item => {
+      return item.name ? item.name.toString() : ''
+    });
+cacheComponents.value = needCacheComponents
+watch(() => router.currentRoute.value, (to, from) => {
+
+  // if (to.name === 'SingleEpisodeDetail' && from.name === 'ProgrammeDetail') {
+  //   cacheComponents.value.push(from.name)
+  // } else {
+  //   cacheComponents.value = needCacheComponents
+  // }
 })
 </script>

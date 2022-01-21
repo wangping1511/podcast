@@ -4,7 +4,7 @@
       <p class="text-xl font-medium dark:text-white">今日推荐</p>
       <a class="text-primary text-sm self-end">往日推荐</a>
     </div>
-    <div v-for="item in list" :key="item.id" class="flex mt-2 mb-3">
+    <div v-for="item in list" :key="item.id" class="flex mt-2 mb-3" @click="$router.push('/single-episode-detail/' + item.id)">
       <div class="flex-none">
         <img class="rounded h-20 w-20" :src="item.coverImg"  alt=""/>
       </div>

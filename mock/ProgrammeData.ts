@@ -60,15 +60,38 @@ export const programmeData: ProgrammeProp[] = [
 		quantity: 19,
 		score: 4.9,
 		coverImg: 'https://imagev2.xmcdn.com/group70/M08/88/42/wKgO2F4Iw9XhjLCHAA_x4EpWPek226.jpg!strip=1&quality=7&magick=webp&op_type=5&upload_type=album&name=mobile_large&device_type=ios',
+	},
+	{
+		id: 7,
+		name: '怡楽电台',
+		author: '怡楽电台',
+		quantity: 20,
+		score: 3.9,
+		coverImg: 'https://imagev2.xmcdn.com/storages/3b04-audiofreehighqps/43/74/CMCoOSUEy4_8AAB86ADKkmgZ.jpg!strip=1&quality=7&magick=jpg&op_type=5&upload_type=album&name=mobile_large&device_type=ios'
+	},
+	{
+		id: 8,
+		name: '一派·Podcast',
+		author: '少数派',
+		quantity: 20,
+		score: 1.9,
+		coverImg: 'https://imagev2.xmcdn.com/storages/1ffd-audiofreehighqps/D0/01/CMCoOScEHgXSAATUDQCQnxWC.jpeg!strip=1&quality=7&magick=webp&op_type=5&upload_type=album&name=mobile_large&device_type=ios'
 	}
 ]
 
 export const getRandomList = (size: number): ProgrammeProp[] => {
-	let list = new Array<ProgrammeProp>()
+	let result = new Array<ProgrammeProp>()
+	let count = programmeData.length;
 	for (let i = 0; i < size; i++) {
-		list.push(programmeData[Math.floor(Math.random() * programmeData.length)])
+		let index = ~~(Math.random() * count) + i;
+		if(result.includes(programmeData[index])){
+			continue;
+		}
+		result[i] = programmeData[index];
+		programmeData[index] = programmeData[i];
+		count--;
 	}
-	return list
+	return result
 }
 
 export const getOne = (id: number): ProgrammeProp | null | undefined => {
