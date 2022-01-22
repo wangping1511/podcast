@@ -29,7 +29,10 @@
     <div v-for="item in epList" class="mb-4" @click="$router.push('/single-episode-detail/' + item.id)">
       <p class="text-xs text-secondary">{{ item.createTime }}</p>
       <p class="text-sm">{{ item.title }}</p>
-      <p class="text-xs text-secondary">{{ item.description }}</p>
+      <p class="text-xs text-secondary overflow-hidden"
+         style="display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;">
+        {{ item.description }}
+      </p>
       <div class="flex items-center mt-2">
         <div class="h-5.5 w-5.5 rounded-full bg-basicWhite dark:bg-basicBlack flex justify-center items-center">
           <i-bi-play-fill class="text-primary text-sm" />
@@ -48,7 +51,7 @@ import ColorThief from './../../node_modules/colorthief/dist/color-thief.mjs'
 const route = useRoute()
 
 const programme = <ProgrammeProp>getOne(Number(route.params.id))
-
+console.log(programme)
 const epList = <SingleEpisodeProp[]>getListByProgrammeId(Number(route.params.id))
 
 console.log('ProgrammeDetail.vue Create...')
@@ -83,9 +86,6 @@ const light = computed<Number>(() => {
 })
 
 const { y } = useWindowScroll()
-watch(y, () => {
-  console.log(y.value);
-})
 </script>
 
 <style scoped>

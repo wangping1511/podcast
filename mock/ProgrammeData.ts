@@ -80,18 +80,7 @@ export const programmeData: ProgrammeProp[] = [
 ]
 
 export const getRandomList = (size: number): ProgrammeProp[] => {
-	let result = new Array<ProgrammeProp>()
-	let count = programmeData.length;
-	for (let i = 0; i < size; i++) {
-		let index = ~~(Math.random() * count) + i;
-		if(result.includes(programmeData[index])){
-			continue;
-		}
-		result[i] = programmeData[index];
-		programmeData[index] = programmeData[i];
-		count--;
-	}
-	return result
+	return programmeData.sort(() => Math.random() - 0.5).slice(0, size)
 }
 
 export const getOne = (id: number): ProgrammeProp | null | undefined => {

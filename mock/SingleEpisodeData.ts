@@ -1,3 +1,5 @@
+import {programmeData} from "./ProgrammeData";
+
 export interface SingleEpisodeProp {
 	id: number,
 	title: string
@@ -1490,18 +1492,7 @@ export const singleEpisodeData: SingleEpisodeProp[] = [
 ]
 
 export const getRandomList = (size: number): SingleEpisodeProp[] => {
-	let result = new Array<SingleEpisodeProp>()
-	let count = singleEpisodeData.length;
-	for (let i = 0; i < size; i++) {
-		let index = ~~(Math.random() * count) + i;
-		if(result.includes(singleEpisodeData[index])){
-			continue;
-		}
-		result[i] = singleEpisodeData[index];
-		singleEpisodeData[index] = singleEpisodeData[i];
-		count--;
-	}
-	return result
+	return singleEpisodeData.sort(() => Math.random() - 0.5).slice(0, size)
 }
 
 export const getListByProgrammeId = (programmeId: number): SingleEpisodeProp[] => {

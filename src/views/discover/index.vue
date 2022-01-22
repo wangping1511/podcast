@@ -18,7 +18,6 @@ const featuredList = getRandomList(6)
 const recommendList = getRandomList(5)
 const programmeList = getProgrammeRandomList(6)
 const list2 = getRandomList(9)
-
 </script>
 
 <style scoped>
