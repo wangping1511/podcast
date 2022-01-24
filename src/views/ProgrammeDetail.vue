@@ -51,7 +51,6 @@ import ColorThief from './../../node_modules/colorthief/dist/color-thief.mjs'
 const route = useRoute()
 
 const programme = <ProgrammeProp>getOne(Number(route.params.id))
-console.log(programme)
 const epList = <SingleEpisodeProp[]>getListByProgrammeId(Number(route.params.id))
 
 console.log('ProgrammeDetail.vue Create...')

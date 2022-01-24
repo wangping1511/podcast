@@ -1,23 +1,27 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+// @ts-ignore
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+import { useAppStore } from '@/store/app'
 
-const routes: RouteRecordRaw[] = [
+export const routes: RouteRecordRaw[] = [
 	{
 		path: '/',
 		component: () => import('@/views/discover/index.vue'),
 		name: 'Discover',
-		meta: { title: '发现', keepAliveFlag: true }
+		meta: { title: '发现', keepAlive: true }
 	},
 	{
 		path: '/subscription',
 		component: () => import('@/views/subscription/index.vue'),
 		name: 'Subscription',
-		meta: { title: '订阅', keepAliveFlag: true }
+		meta: { title: '订阅', keepAlive: true }
 	},
 	{
 		path: '/me',
 		component: () => import('@/views/me/index.vue'),
 		name: 'Me',
-		meta: { title: '我的', keepAliveFlag: true }
+		meta: { title: '我的', keepAlive: true }
 	},
 	{
 		path: '/programme-detail/:id',
@@ -43,4 +47,19 @@ const router = createRouter({
 	}
 })
 
+router.beforeEach((to, from) => {
+	NProgress.start()
+	const appStore = useAppStore()
+	if (from.name === 'ProgrammeDetail') {
+		if (to.name === 'SingleEpisodeDetail') {
+			appStore.addCacheView('ProgrammeDetail')
+		} else {
+			appStore.removeCacheView('ProgrammeDetail')
+		}
+	}
+})
+
+router.afterEach(() => {
+	NProgress.done()
+})
 export default router

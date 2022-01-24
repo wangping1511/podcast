@@ -4,6 +4,7 @@ declare module 'vue-router' {
 	interface RouteMeta {
 		// 标题
 		title?: string,
-		keepAliveFlag?: boolean
+		// 是否缓存
+		keepAlive?: boolean
 	}
 }

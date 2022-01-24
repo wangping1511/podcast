@@ -2,15 +2,18 @@
   <div>
     <router-view v-slot="{ Component }">
       <nav-bar v-if="navBarVisibleFlag"></nav-bar>
-      <keep-alive :exclude="['ProgrammeDetail', 'SingleEpisodeDetail']">
-        <component :is="Component" :key="$route.name" />
+      <keep-alive :include="appStore.cacheViews">
+        <transition name="fade">
+          <component :is="Component" :key="$route.name" />
+        </transition>
       </keep-alive>
     </router-view>
   </div>
 </template>
 <script setup lang="ts">
-import NavBar from '@/components/NavBar.vue';
+import NavBar from '@/components/NavBar.vue'
 import { useDark, useToggle } from '@vueuse/core'
+import { useAppStore } from '@/store/app'
 
 /**
  * 自动切换主题
@@ -30,24 +33,18 @@ const navBarVisibleFlag = computed(() => {
   return false
 })
 
-const cacheComponents = ref<string[]>([])
-/**
- *
- */
-const router = useRouter()
-
-let needCacheComponents = router.getRoutes()
-    .filter(item => item.meta.keepAliveFlag)
-    .map(item => {
-      return item.name ? item.name.toString() : ''
-    });
-cacheComponents.value = needCacheComponents
-watch(() => router.currentRoute.value, (to, from) => {
-
-  // if (to.name === 'SingleEpisodeDetail' && from.name === 'ProgrammeDetail') {
-  //   cacheComponents.value.push(from.name)
-  // } else {
-  //   cacheComponents.value = needCacheComponents
-  // }
-})
+const appStore = useAppStore()
 </script>
+
+<style lang="scss" scoped>
+.fade-enter-active {
+  transition: opacity 0.5s ease;
+}
+.fade-leave-active {
+  transition: none;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

@@ -6,7 +6,6 @@
 </template>
 
 <script setup lang="ts" name="Discover">
-console.log('index')
 import DiscoverRecommend from '@/views/discover/DiscoverRecommend.vue'
 import DiscoverFeatured from '@/views/discover/DiscoverFeatured.vue'
 import { getRandomList } from '../../../mock/SingleEpisodeData'
