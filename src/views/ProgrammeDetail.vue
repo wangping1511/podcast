@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="flex flex-col items-center" :class="light === 1 ? 'text-white' : ''">
-        <img class="bg-primary h-45 w-45 rounded-md shadow-2xl" :src="programme.coverImg" crossorigin="anonymous">
+        <img id="coverImg" class="bg-primary h-45 w-45 rounded-md shadow-2xl" :src="programme.coverImg" crossorigin="anonymous">
         <p class="text-sm font-medium mt-2">{{ programme.name }}</p>
         <p class="text-xs text-secondary mt-2">{{ programme.author }}</p>
         <button class="w-60 h-10 rounded-lg mt-2 text-sm font-medium" :class="light === 1 ? 'bg-white text-black' : 'bg-basicBlack text-white'">最新单集</button>
@@ -59,7 +59,7 @@ console.log('ProgrammeDetail.vue Create...')
 const bgColor = ref([])
 onMounted(() => {
   const colorThief = new ColorThief();
-  const img = document.querySelector('img');
+  const img = <HTMLImageElement>document.getElementById('coverImg');
   if (img) {
     if (img.complete) {
       bgColor.value = colorThief.getColor(img)

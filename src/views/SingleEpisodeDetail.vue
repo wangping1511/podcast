@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="flex flex-col items-center" :class="light === 1 ? 'text-white' : ''">
-        <img class="bg-primary h-45 w-45 rounded-md shadow-2xl" :src="ep.coverImg" crossorigin="anonymous">
+        <img id="coverImg" class="bg-primary h-45 w-45 rounded-md shadow-2xl" :src="ep.coverImg" crossorigin="anonymous">
         <p class="text-xs text-secondary mt-2">{{ ep.createTime }}</p>
         <p class="px-4 text-md font-medium mt-2 text-center">{{ ep.title }}</p>
         <button class="w-60 h-10 rounded-lg mt-2 text-sm font-medium" :class="light === 1 ? 'bg-white text-black' : 'bg-basicBlack text-white'">播放</button>
@@ -39,7 +39,7 @@ const ep = <SingleEpisodeProp>getOne(Number(route.params.id))
 const bgColor = ref([])
 onMounted(() => {
   const colorThief = new ColorThief();
-  const img = document.querySelector('img');
+  const img = <HTMLImageElement>document.getElementById('coverImg');
   if (img) {
     if (img.complete) {
       bgColor.value = colorThief.getColor(img)

@@ -2,11 +2,12 @@
   <div>
     <router-view v-slot="{ Component }">
       <nav-bar v-if="navBarVisibleFlag"></nav-bar>
-      <keep-alive :include="appStore.cacheViews">
-        <transition name="fade">
+      <transition name="fade">
+        <keep-alive :include="appStore.cacheViews">
           <component :is="Component" :key="$route.name" />
-        </transition>
-      </keep-alive>
+        </keep-alive>
+      </transition>
+      <play-bar></play-bar>
     </router-view>
   </div>
 </template>
@@ -14,6 +15,7 @@
 import NavBar from '@/components/NavBar.vue'
 import { useDark, useToggle } from '@vueuse/core'
 import { useAppStore } from '@/store/app'
+import PlayBar from "@/components/PlayBar.vue";
 
 /**
  * 自动切换主题
