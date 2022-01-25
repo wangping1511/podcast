@@ -8,7 +8,6 @@ export default [
 		method: 'get',
 		response: ({ query }: Record<any, any>) => {
 			const { pageNum, pageSize } = query
-			console.log(query)
 			return {
 				code: 200,
 				data: {

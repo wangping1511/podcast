@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed bottom-0 w-full px-5.5 py-2 bg-gray-50 dark:bg-[#141414] shadow-md">
+  <div v-show="playBarVisibleFlag" class="fixed bottom-0 w-full px-5.5 py-2 bg-gray-50 dark:bg-[#141414] shadow-md">
     <div class="flex justify-between">
       <div class="flex items-center">
         <img class="h-12 w-12 rounded shadow-2xl" src="https://imagev2.xmcdn.com/storages/1ffd-audiofreehighqps/D0/01/CMCoOScEHgXSAATUDQCQnxWC.jpeg!strip=1&quality=7&magick=webp&op_type=5&upload_type=album&name=mobile_large&device_type=ios" alt="..." />
@@ -23,6 +23,30 @@
 </template>
 
 <script setup lang="ts">
+// 向上滚动显示播放条，向下隐藏 目前不稳定
+const playBarVisibleFlag = ref(true)
+
+let startY = 0;
+const touchStartHandler = (e: TouchEvent) => {
+  e.preventDefault(); //阻止默认事件（长按的时候出现复制）
+  startY = window.scrollY
+}
+
+const touchMoveHandler = (e: TouchEvent) => {
+  const endY = window.scrollY
+  const offset = startY - endY
+  if (Math.abs(offset) > 5) {
+    playBarVisibleFlag.value = offset >= 0;
+  }
+}
+onMounted(() => {
+  window.addEventListener('touchstart', touchStartHandler)
+  window.addEventListener('touchmove', touchMoveHandler)
+})
+onUnmounted(() => {
+  window.removeEventListener('touchstart', touchStartHandler)
+  window.removeEventListener('touchmove', touchMoveHandler)
+})
 </script>
 
 <style scoped>
