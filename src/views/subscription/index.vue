@@ -4,9 +4,12 @@
 
 <script setup lang="ts" name="Subscription">
 import SubscriptionList from '@/views/subscription/SubscriptionList.vue'
-import { getRandomList } from '../../../mock/ProgrammeData'
+import { getProgrammeList } from '@/api'
 
-let list = getRandomList(7)
+let list = ref()
+getProgrammeList({ pageNum: 1, pageSize: 8 }).then(res => {
+  list.value = res.list
+})
 </script>
 
 <style scoped>
