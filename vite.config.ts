@@ -60,7 +60,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
           setupProdMockServer();
         `,
       }),
-      viteVConsole({
+      /*viteVConsole({
         entry: resolve('src/main.ts'),
         localEnabled: command === 'serve',
         enabled: command !== 'serve',
@@ -68,7 +68,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
           maxLogNumber: 100,
           theme: 'dark'
         }
-      })
+      })*/
     ],
     build: {
       outDir: 'docs',
