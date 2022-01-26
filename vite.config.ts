@@ -10,6 +10,7 @@ import viteCompression from 'vite-plugin-compression'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import ViteImages from 'vite-plugin-vue-images'
 import { viteMockServe } from 'vite-plugin-mock'
+import { viteVConsole } from 'vite-plugin-vconsole'
 
 // https://vitejs.dev/config/
 export default ({ command }: ConfigEnv): UserConfigExport => {
@@ -58,6 +59,15 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
           import { setupProdMockServer } from '../mock/mockProdServer';
           setupProdMockServer();
         `,
+      }),
+      viteVConsole({
+        entry: resolve('src/main.ts'),
+        localEnabled: command === 'serve',
+        enabled: command !== 'serve',
+        config: {
+          maxLogNumber: 100,
+          theme: 'dark'
+        }
       })
     ],
     build: {

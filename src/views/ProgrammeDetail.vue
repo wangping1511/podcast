@@ -47,6 +47,7 @@
 import { ProgrammeProp, getOne } from '../../mock/ProgrammeData'
 import { SingleEpisodeProp, getListByProgrammeId } from '../../mock/SingleEpisodeData'
 import ColorThief from './../../node_modules/colorthief/dist/color-thief.mjs'
+import {onBeforeRouteUpdate} from "vue-router";
 
 const route = useRoute()
 

@@ -12,11 +12,7 @@ import { getRandomList } from '../../../mock/SingleEpisodeData'
 import { getRandomList as getProgrammeRandomList } from '../../../mock/ProgrammeData'
 import DiscoverPopularProgramme from '@/views/discover/DiscoverPopularProgramme.vue'
 import DiscoverPopularEp from '@/views/discover/DiscoverPopularEp.vue'
-import http from '@/utils/request'
 
-http.get('/programme/list', { pageNum: 1, pageSize: 4 }).then(res => {
-  console.log(res)
-})
 const featuredList = getRandomList(6)
 const recommendList = getRandomList(5)
 const programmeList = getProgrammeRandomList(6)

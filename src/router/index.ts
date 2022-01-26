@@ -50,13 +50,15 @@ const router = createRouter({
 router.beforeEach((to, from) => {
 	NProgress.start()
 	const appStore = useAppStore()
+	if (to.name === 'ProgrammeDetail') {
+		appStore.addCacheView('ProgrammeDetail')
+	}
 	if (from.name === 'ProgrammeDetail') {
-		if (to.name === 'SingleEpisodeDetail') {
-			appStore.addCacheView('ProgrammeDetail')
-		} else {
+		if (to.name !== 'SingleEpisodeDetail') {
 			appStore.removeCacheView('ProgrammeDetail')
 		}
 	}
+
 })
 
 router.afterEach(() => {

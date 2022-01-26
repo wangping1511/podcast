@@ -32,20 +32,23 @@ const touchStartHandler = (e: TouchEvent) => {
   startY = window.scrollY
 }
 
-const touchMoveHandler = (e: TouchEvent) => {
+const scrollHandler = () => {
   const endY = window.scrollY
   const offset = startY - endY
-  if (Math.abs(offset) > 5) {
-    playBarVisibleFlag.value = offset >= 0;
+  if (Math.abs(offset) > 200) {
+    playBarVisibleFlag.value = offset >= 0
+    startY = window.scrollY
   }
 }
 onMounted(() => {
   window.addEventListener('touchstart', touchStartHandler)
-  window.addEventListener('touchmove', touchMoveHandler)
+  window.addEventListener('scroll', scrollHandler)
+
 })
+
 onUnmounted(() => {
   window.removeEventListener('touchstart', touchStartHandler)
-  window.removeEventListener('touchmove', touchMoveHandler)
+  window.removeEventListener('scroll', scrollHandler)
 })
 </script>
 

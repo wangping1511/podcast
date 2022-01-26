@@ -14,7 +14,6 @@ export const useAppStore = defineStore({
 			}
 		},
 		removeCacheView(name: string) {
-			console.log(name)
 			if (this.cacheViews.includes(name)) {
 				const index = this.cacheViews.indexOf(name)
 				this.cacheViews.splice(index, 1)

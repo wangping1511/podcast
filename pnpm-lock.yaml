@@ -17,9 +17,11 @@ specifiers:
   unplugin-auto-import: ^0.5.10
   unplugin-icons: ^0.13.0
   unplugin-vue-components: ^0.17.11
+  vconsole: ^3.11.2
   vite: ^2.7.2
   vite-plugin-compression: ^0.4.0
   vite-plugin-mock: ^2.9.6
+  vite-plugin-vconsole: ^1.1.1
   vite-plugin-vue-images: ^0.6.1
   vite-plugin-vue-setup-extend: ^0.3.0
   vite-plugin-windicss: ^1.6.2
@@ -49,9 +51,11 @@ devDependencies:
   unplugin-auto-import: registry.npmmirror.com/unplugin-auto-import/0.5.10_0c297915b5acffe0c663e636884ac7fa
   unplugin-icons: registry.npmmirror.com/unplugin-icons/0.13.0_rollup@2.66.0+vite@2.7.12
   unplugin-vue-components: registry.npmmirror.com/unplugin-vue-components/0.17.11_5325c231481a02475dddc225d65d9323
+  vconsole: 3.11.2
   vite: registry.npmmirror.com/vite/2.7.12_sass@1.48.0
   vite-plugin-compression: registry.npmmirror.com/vite-plugin-compression/0.4.0_vite@2.7.12
   vite-plugin-mock: 2.9.6_6520f1f1e2ce9d7b74601913487ecdf5
+  vite-plugin-vconsole: 1.1.1
   vite-plugin-vue-images: 0.6.1
   vite-plugin-vue-setup-extend: 0.3.0_vite@2.7.12
   vite-plugin-windicss: registry.npmmirror.com/vite-plugin-windicss/1.6.2_vite@2.7.12
@@ -319,6 +323,20 @@ packages:
       finalhandler: 1.1.2
       parseurl: 1.3.3
       utils-merge: 1.0.1
+    dev: true
+
+  /cookie-storage/6.1.0:
+    resolution: {integrity: sha512-HeVqbVy8BjXhAAuFtL6MTG+witHoLbxfky2jgVh9FmxmyL6IKa9gSSyPNjevXCCCxPu6Tzd9J8+eXTRQzYU/cg==}
+    dev: true
+
+  /copy-text-to-clipboard/3.0.1:
+    resolution: {integrity: sha512-rvVsHrpFcL4F2P8ihsoLdFHmd404+CMg71S756oRSeQgqk51U3kicGdnvfkrxva0xXH92SjGS62B0XIJsbh+9Q==}
+    engines: {node: '>=12'}
+    dev: true
+
+  /core-js/3.20.3:
+    resolution: {integrity: sha512-vVl8j8ph6tRS3B8qir40H7yw7voy17xL0piAjlbBUsH7WIfzoedL/ZOr1OV9FyZQLWXsayOJyV4tnRyXR85/ag==}
+    requiresBuild: true
     dev: true
 
   /core-util-is/1.0.2:
@@ -847,6 +865,10 @@ packages:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: true
 
+  /mutation-observer/1.0.3:
+    resolution: {integrity: sha512-M/O/4rF2h776hV7qGMZUH3utZLO/jK7p8rnNgGkjKUw8zCGjRQPxB8z6+5l8+VjRUQ3dNYu4vjqXYLr+U8ZVNA==}
+    dev: true
+
   /nanoid/3.1.32:
     resolution: {integrity: sha512-F8mf7R3iT9bvThBoW4tGXhXFHCctyCiUUPrWF8WaTqa3h96d9QybkSeba43XVOOE3oiLfkVDe4bT8MeGmkrTxw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -1149,6 +1171,15 @@ packages:
     hasBin: true
     dev: false
 
+  /vconsole/3.11.2:
+    resolution: {integrity: sha512-gOYOEocyRtFcy4viVEf4c52okpuhRLE0l43q4aMaKLp9pxYoyMJXsEUBydCuzQPc1PKwUpUVE8fEzTcAGUA5sA==}
+    dependencies:
+      cookie-storage: 6.1.0
+      copy-text-to-clipboard: 3.0.1
+      core-js: 3.20.3
+      mutation-observer: 1.0.3
+    dev: true
+
   /verror/1.10.0:
     resolution: {integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=}
     engines: {'0': node >=0.6.0}
@@ -1179,6 +1210,10 @@ packages:
     transitivePeerDependencies:
       - rollup
       - supports-color
+    dev: true
+
+  /vite-plugin-vconsole/1.1.1:
+    resolution: {integrity: sha512-8oODvR4inPCVbfeWkxmV++sP6qypH7DfxBAzCT3Erm7XnoK8aTuRls30wXlXL6LDB6e090vTELOYyreGe7OOLA==}
     dev: true
 
   /vite-plugin-vue-images/0.6.1:
