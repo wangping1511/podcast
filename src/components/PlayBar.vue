@@ -1,28 +1,51 @@
 <template>
-  <div v-show="playBarVisibleFlag" class="fixed bottom-0 w-full px-5.5 py-2 bg-gray-50 dark:bg-[#141414] shadow-md">
+  <div v-show="playBarVisibleFlag" class="fixed bottom-0 w-full px-5.5 py-2 bg-gray-50 dark:bg-[#141414] shadow-md" @click="openPlayer">
     <div class="flex justify-between">
       <div class="flex items-center">
-        <img class="h-12 w-12 rounded shadow-2xl" src="https://imagev2.xmcdn.com/storages/1ffd-audiofreehighqps/D0/01/CMCoOScEHgXSAATUDQCQnxWC.jpeg!strip=1&quality=7&magick=webp&op_type=5&upload_type=album&name=mobile_large&device_type=ios" alt="..." />
-        <p class="w-50 font-medium text-base dark:text-white ml-4 truncate">爱上你的卡绝对是拉萨大家爱上了多久啊是</p>
+        <img v-if="playerInfo.coverImg" class="h-12 w-12 rounded shadow-2xl" :src="playerInfo.coverImg" alt="..." />
+        <div v-else class="h-12 w-12 rounded shadow-2xl bg-primary flex items-center justify-center">
+          <i-cib-google-podcasts  class="dark:text-white text-2xl text-white"></i-cib-google-podcasts>
+        </div>
+        <p class="w-50 font-medium text-base dark:text-white ml-4 truncate">{{ playerInfo.title }}</p>
       </div>
       <div class="flex items-center">
-        <i-bi-play-fill v-if="true" class="text-primary text-2xl" />
+        <i-bi-play-fill v-if="playerStore.state === 0" class="text-primary text-2xl" />
         <i-bi-pause-fill v-else class="text-primary text-2xl" />
         <i-ic-round-forward-30 class="ml-2 text-primary text-2xl" />
       </div>
     </div>
   </div>
-<!--  <div class="fixed h-full w-full bottom-0 rounded-md"  @touchmove.prevent="">-->
-<!--    <div class="w-full h-[10%] bg-transparent">-->
-
-<!--    </div>-->
-<!--    <div class="w-full h-full dark:bg-[#141414] bg-white">-->
-
-<!--    </div>-->
-<!--  </div>-->
+  <div v-show="playerVisibleFlag" class="fixed h-full w-full top-0 left-0 bg-white dark:bg-[#141414] pt-4 px-8 z-[1000] dark:text-white overflow-y-scroll"  >
+    <div class="mx-auto text-center">
+      <i-eva-arrow-ios-downward-outline class="text-secondary text-4xl" @click="closePlayer"></i-eva-arrow-ios-downward-outline>
+    </div>
+    <img v-if="playerInfo.coverImg" class="mx-auto w-70 rounded shadow-2xl" :src="playerInfo.coverImg" alt="..." />
+    <div v-else class="mx-auto w-70 h-70 rounded shadow-2xl bg-primary flex items-center justify-center">
+      <i-cib-google-podcasts  class="dark:text-white text-2xl text-white"></i-cib-google-podcasts>
+    </div>
+    <div class="mt-10 w-full h-1 rounded bg-[#E1E1E1] bg-opacity-40">
+      <div class="w-[50%] h-1 bg-primary rounded"></div>
+    </div>
+    <div class="flex justify-between text-secondary text-sm">
+      <p>12:21</p>
+      <p>-30:80</p>
+    </div>
+    <p class="mt-10 mx-auto text-center text-xl">{{ playerInfo.title }}</p>
+    <p class="mx-auto text-center text-xl text-primary">怡楽电台</p>
+    <div class="flex justify-between mx-6 items-center mt-6">
+      <i-ic-round-replay-30 class="text-4xl"></i-ic-round-replay-30>
+      <i-bi-play-fill v-if="playerStore.state === 0" class="text-6xl" />
+      <i-bi-pause-fill v-else class="text-6xl" />
+      <i-ic-round-forward-30 class="text-4xl" />
+    </div>
+  </div>
 </template>
 
+
 <script setup lang="ts">
+import emitter from '@/utils/mitter'
+import { usePlayerStore } from '@/store/player'
+import { SingleEpisodeProp, getOne } from '../../mock/SingleEpisodeData'
 // 向上滚动显示播放条，向下隐藏 目前不稳定
 const playBarVisibleFlag = ref(true)
 
@@ -40,18 +63,59 @@ const scrollHandler = () => {
     startY = window.scrollY
   }
 }
+
+// 打开播放器
+const playerVisibleFlag = ref(false)
+const openPlayer = () => {
+  playerVisibleFlag.value = true
+  const bodyEl = document.querySelector('body')
+  if (bodyEl)
+    bodyEl.style.overflow = 'hidden'
+}
+const closePlayer = () => {
+  playerVisibleFlag.value = false
+  const bodyEl = document.querySelector('body')
+  if (bodyEl)
+    bodyEl.style.overflow = 'scroll'
+}
+
+// 播放、暂停
+const playerStore = usePlayerStore()
+
+const playerInfo = reactive({
+  id: 0,
+  coverImg: '',
+  title: '暂无播放'
+})
+const playHandler = (epId: number) => {
+  if (playerStore.epId === epId) {
+    playerStore.setState(playerStore.state === 0 ? 1 : 0)
+  } else {
+    playerStore.setState(1)
+    playerStore.setEpId(epId)
+    console.log(epId)
+    const epInfo = getOne(epId)
+    if (epInfo) {
+      const { id, coverImg, title } = epInfo
+      playerInfo.id = id;
+      playerInfo.coverImg = coverImg
+      playerInfo.title = title
+    }
+  }
+}
+
 onMounted(() => {
   window.addEventListener('touchstart', touchStartHandler)
   window.addEventListener('scroll', scrollHandler)
-
+  emitter.on('play', playHandler)
 })
 
 onUnmounted(() => {
   window.removeEventListener('touchstart', touchStartHandler)
   window.removeEventListener('scroll', scrollHandler)
+  emitter.off('play')
 })
 </script>
-
 <style scoped>
 
 </style>

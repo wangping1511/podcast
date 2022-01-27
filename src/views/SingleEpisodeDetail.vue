@@ -48,7 +48,6 @@ onMounted(() => {
 
   if (img) {
     const topDiv = <HTMLDivElement>document.getElementById('topDiv')
-    console.log(topDiv)
     if (img.complete) {
       bgColor = colorThief.getColor(img)
       colorHex = "#" + ((1 << 24) + (bgColor[0] << 16) + (bgColor[1] << 8) + bgColor[2]).toString(16).slice(1)

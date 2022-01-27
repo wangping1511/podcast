@@ -8,6 +8,7 @@ specifiers:
   axios: ^0.24.0
   colorthief: ^2.3.2
   cross-env: ^7.0.3
+  mitt: ^3.0.0
   mockjs: ^1.1.0
   nprogress: ^0.2.0
   pinia: ^2.0.0-rc.10
@@ -34,6 +35,7 @@ dependencies:
   '@vueuse/core': registry.npmmirror.com/@vueuse/core/7.5.3_vue@3.2.26
   axios: registry.npmmirror.com/axios/0.24.0
   colorthief: 2.3.2
+  mitt: 3.0.0
   mockjs: 1.1.0
   nprogress: 0.2.0
   pinia: registry.npmmirror.com/pinia/2.0.0-rc.10_typescript@4.5.4+vue@3.2.26
@@ -848,6 +850,10 @@ packages:
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.51.0
+    dev: false
+
+  /mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
     dev: false
 
   /mockjs/1.1.0:

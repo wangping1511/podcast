@@ -4,6 +4,7 @@ export const useAppStore = defineStore({
 	id: 'app',
 	state: () => {
 		return {
+			theme: 'dark',
 			cacheViews: routes.filter(item => item.meta?.keepAlive).map(item => item.name ? item.name.toString() : '')
 		}
 	},
@@ -18,6 +19,9 @@ export const useAppStore = defineStore({
 				const index = this.cacheViews.indexOf(name)
 				this.cacheViews.splice(index, 1)
 			}
+		},
+		setTheme(theme: 'dark' | 'light' | 'auto') {
+			this.theme = theme
 		}
 	}
 })
