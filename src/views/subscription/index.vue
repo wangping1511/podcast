@@ -6,7 +6,7 @@
 import SubscriptionList from '@/views/subscription/SubscriptionList.vue'
 import { getProgrammeList } from '@/api'
 
-let list = ref()
+let list = ref([])
 getProgrammeList({ pageNum: 1, pageSize: 8 }).then(res => {
   list.value = res.list
 })

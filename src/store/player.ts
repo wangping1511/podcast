@@ -1,18 +1,37 @@
 import { defineStore } from 'pinia'
+import { SingleEpisodeProp } from '../../mock/SingleEpisodeData'
+
 export const usePlayerStore = defineStore({
 	id: 'player',
 	state: () => {
 		return {
-			state: 0,
-			epId: 0
+			play: false,
+			programmeId: 0,
+			epId: 0,
+			epTitle: '暂无播放',
+			programmeName: '',
+			coverImg: '',
 		}
 	},
 	actions: {
-		setState(state: 0 | 1) {
-			this.state = state
+		setPlay(state: boolean) {
+			this.play = state
 		},
-		setEpId(epId: number) {
-			this.epId = epId
+		setPlayInfo(playInfo: SingleEpisodeProp) {
+			const { id, programmeId, coverImg, title, programmeName } = playInfo
+			this.epId = id
+			this.epTitle = title
+			this.programmeId = programmeId
+			this.programmeName = programmeName
+			this.coverImg = coverImg
 		}
+	},
+	persist: {
+		enabled: true,
+		strategies: [
+			{
+				storage: localStorage
+			}
+		]
 	}
 })

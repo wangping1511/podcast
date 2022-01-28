@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pb-10">
     <router-view v-slot="{ Component }">
       <nav-bar v-if="navBarVisibleFlag"></nav-bar>
       <transition name="fade">
