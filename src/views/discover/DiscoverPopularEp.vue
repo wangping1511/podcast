@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-5">
+  <div>
     <div class="flex justify-between mx-5">
       <p class="text-xl font-medium dark:text-white">热门单集</p>
       <a class="text-primary text-sm self-end">查看更多</a>

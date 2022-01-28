@@ -1,8 +1,10 @@
 <template>
-  <discover-featured :list="featuredList"></discover-featured>
-  <discover-recommend :list="recommendList"></discover-recommend>
-  <discover-popular-programme :list="programmeList"></discover-popular-programme>
-  <discover-popular-ep :list="list2"></discover-popular-ep>
+  <div>
+    <discover-featured :list="featuredList"></discover-featured>
+    <discover-recommend :list="recommendList"></discover-recommend>
+    <discover-popular-programme :list="programmeList"></discover-popular-programme>
+    <discover-popular-ep :list="list2"></discover-popular-ep>
+  </div>
 </template>
 
 <script setup lang="ts" name="Discover">

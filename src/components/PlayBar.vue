@@ -9,7 +9,7 @@
         <p class="w-50 font-medium text-base dark:text-white ml-4 truncate">{{ playerInfo.title }}</p>
       </div>
       <div class="flex items-center">
-        <i-bi-play-fill v-if="playerStore.state === 0" class="text-primary text-2xl" />
+        <i-bi-play-fill v-if="!playerStore.play" class="text-primary text-2xl" />
         <i-bi-pause-fill v-else class="text-primary text-2xl" />
         <i-ic-round-forward-30 class="ml-2 text-primary text-2xl" />
       </div>
@@ -31,10 +31,10 @@
       <p>-30:80</p>
     </div>
     <p class="mt-10 mx-auto text-center text-xl">{{ playerInfo.title }}</p>
-    <p class="mx-auto text-center text-xl text-primary">怡楽电台</p>
+    <p class="mx-auto text-center text-xl text-primary">{{ playerInfo.programmeName }}</p>
     <div class="flex justify-between mx-6 items-center mt-6">
       <i-ic-round-replay-30 class="text-4xl"></i-ic-round-replay-30>
-      <i-bi-play-fill v-if="playerStore.state === 0" class="text-6xl" />
+      <i-bi-play-fill v-if="!playerStore.play" class="text-6xl" />
       <i-bi-pause-fill v-else class="text-6xl" />
       <i-ic-round-forward-30 class="text-4xl" />
     </div>
@@ -58,7 +58,7 @@ const touchStartHandler = (e: TouchEvent) => {
 const scrollHandler = () => {
   const endY = window.scrollY
   const offset = startY - endY
-  if (Math.abs(offset) > 200) {
+  if (Math.abs(offset) > 100) {
     playBarVisibleFlag.value = offset >= 0
     startY = window.scrollY
   }
@@ -85,21 +85,23 @@ const playerStore = usePlayerStore()
 const playerInfo = reactive({
   id: 0,
   coverImg: '',
-  title: '暂无播放'
+  title: '暂无播放',
+  programmeName: ''
 })
 const playHandler = (epId: number) => {
   if (playerStore.epId === epId) {
-    playerStore.setState(playerStore.state === 0 ? 1 : 0)
+    playerStore.setPlay(!playerStore.play)
   } else {
-    playerStore.setState(1)
+    playerStore.setPlay(true)
     playerStore.setEpId(epId)
-    console.log(epId)
     const epInfo = getOne(epId)
     if (epInfo) {
-      const { id, coverImg, title } = epInfo
+      const { id, coverImg, title, programmeId, programmeName } = epInfo
       playerInfo.id = id;
       playerInfo.coverImg = coverImg
       playerInfo.title = title
+      playerInfo.programmeName = programmeName
+      playerStore.setProgrammeId(programmeId)
     }
   }
 }
